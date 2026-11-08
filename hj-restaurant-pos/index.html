@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>HJ Restaurant POS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div id="toast-root" class="toast-root"></div>
+
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-art">
+      <div class="brand-mark">HJ<span>•</span></div>
+      <div class="auth-art-copy">
+        <p class="eyebrow">RESTAURANT MANAGEMENT, REIMAGINED</p>
+        <h1>Run your restaurant<br><span>with clarity.</span></h1>
+        <p>Orders, billing, kitchen and business insights — together in one workspace.</p>
+        <div class="auth-pills"><span>✦ Smart billing</span><span>✦ Live kitchen</span><span>✦ Cloud sync</span></div>
+      </div>
+      <div class="orb orb-one"></div><div class="orb orb-two"></div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-card glass">
+        <div class="brand-mark small">HJ<span>•</span></div>
+        <p class="eyebrow">WELCOME TO HJ POS</p>
+        <h2 id="auth-title">Sign in to your workspace</h2>
+        <p class="muted" id="auth-subtitle">Manage your restaurant from anywhere.</p>
+        <form id="auth-form">
+          <label>Email address<input id="auth-email" type="email" placeholder="you@restaurant.com" autocomplete="email" required></label>
+          <label>Password<input id="auth-password" type="password" placeholder="At least 6 characters" autocomplete="current-password" required minlength="6"></label>
+          <label id="restaurant-name-wrap" class="hidden">Restaurant name<input id="auth-restaurant" type="text" placeholder="Your restaurant"></label>
+          <button class="btn primary full" id="auth-submit" type="submit">Sign in <span>→</span></button>
+        </form>
+        <p class="auth-switch"><span id="auth-switch-text">New to HJ POS?</span> <button class="text-button" id="auth-switch" type="button">Create account</button></p>
+        <p class="tiny muted">Your workspace is private to your Firebase account.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><div class="brand-icon">HJ</div><div><strong>HJ POS</strong><small>RESTAURANT SUITE</small></div><button class="icon-btn mobile-close" id="close-sidebar">×</button></div>
+      <div class="restaurant-switch"><span class="live-dot"></span><div><small>WORKSPACE</small><strong id="side-restaurant">My Restaurant</strong></div><span class="chevron">⌄</span></div>
+      <nav class="side-nav">
+        <p class="nav-label">WORKSPACE</p>
+        <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-link" data-page="pos"><span>▣</span> POS Billing <kbd>F2</kbd></button>
+        <button class="nav-link" data-page="orders"><span>☷</span> Orders</button>
+        <button class="nav-link" data-page="kitchen"><span>♨</span> Kitchen display</button>
+        <button class="nav-link" data-page="tables"><span>▤</span> Tables</button>
+        <p class="nav-label">MANAGEMENT</p>
+        <button class="nav-link" data-page="menu"><span>◈</span> Menu & categories</button>
+        <button class="nav-link" data-page="inventory"><span>▥</span> Inventory</button>
+        <button class="nav-link" data-page="reports"><span>▧</span> Reports</button>
+        <p class="nav-label">CONFIGURATION</p>
+        <button class="nav-link" data-page="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="support-card"><div class="support-icon">✦</div><strong>Need a hand?</strong><p>Keep your restaurant running smoothly.</p><a href="mailto:support@example.com">Contact support ↗</a></div><div class="user-mini"><div class="avatar" id="user-avatar">HJ</div><div class="user-meta"><strong id="user-email">Account</strong><small>Workspace owner</small></div><button class="icon-btn" id="logout-btn" title="Sign out">↗</button></div></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="top-left"><button class="icon-btn menu-toggle" id="menu-toggle">☰</button><div><div class="breadcrumb">HJ POS <span>/</span> <strong id="page-name">Dashboard</strong></div><div class="top-date" id="today-label"></div></div></div>
+        <div class="top-actions"><div class="cloud-status"><span class="live-dot"></span> Cloud synced</div><button class="icon-btn" id="top-add-order" title="New order">＋</button><div class="avatar top-avatar" id="top-avatar">HJ</div></div>
+      </header>
+      <div class="page-wrap">
+        <section id="page-dashboard" class="page active"></section>
+        <section id="page-pos" class="page"></section>
+        <section id="page-orders" class="page"></section>
+        <section id="page-kitchen" class="page"></section>
+        <section id="page-tables" class="page"></section>
+        <section id="page-menu" class="page"></section>
+        <section id="page-inventory" class="page"></section>
+        <section id="page-reports" class="page"></section>
+        <section id="page-settings" class="page"></section>
+      </div>
+    </main>
+  </div>
+
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+  <div id="modal-root"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
